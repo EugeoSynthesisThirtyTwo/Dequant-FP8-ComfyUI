@@ -22,7 +22,7 @@ DTYPE_MAP        = {"fp32": torch.float32, "fp16": torch.float16, "bf16": torch.
 
 def find_reciprocal_scale(state: dict[str, torch.Tensor], base: str) -> float:
     """Return the reciprocal scale associated with *base*."""
-    for suffix in ("scale_weight", "scale_reciprocal"):
+    for suffix in ("weight_scale", "scale_weight", "scale_reciprocal"):
         key = f"{base}.{suffix}"
         if key in state:
             return state[key].to(torch.float32).item()
